@@ -1,1 +1,2 @@
-# kypro
+# contest
+programing competition
