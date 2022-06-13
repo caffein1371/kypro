@@ -1,0 +1,7 @@
+R,C=map(int,input().split())
+Alist = list(map(int,input().split()))
+Blist = list(map(int,input().split()))
+Clist =list()
+Clist.append(Alist)
+Clist.append(Blist)
+print (Clist[R-1][C-1])
