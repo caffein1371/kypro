@@ -21,4 +21,4 @@ x4=x2*math.cos(math.radians(90))-y2*math.sin(math.radians(90))+x1-x1*math.cos(ma
 y4=x2*math.sin(math.radians(90))+y2*math.cos(math.radians(90))+y1-x1*math.sin(math.radians(90))-y1*math.cos(math.radians(90))
 
 
-print(int(x3),int(y3),int(x4),int(y4))
+print(round(x3),round(y3),round(x4),round(y4))
