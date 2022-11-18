@@ -12,7 +12,7 @@ sys.stdin = io.StringIO(_INPUT)
 x1,y1,x2,y2 = map(int,input().split())
 import math
 temp = math.sqrt((x1-x2)**2+(y1-y2)**2)
-x3=x2-temp
+x3=abs(x2-x1)//math.sin(math.radians(45))
 y3=y1+temp
 x4=x1-temp
 y4=y1
