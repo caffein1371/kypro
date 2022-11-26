@@ -5,6 +5,7 @@ import sys
 _INPUT = """\
 3 4
 
+
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
