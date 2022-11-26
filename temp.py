@@ -3,16 +3,13 @@ import io
 import sys
 
 _INPUT = """\
-45
+3 4
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N = int(input())
-dp = [0 for i in range(N+1)]
-dp[0]=1
-dp[1]=1
-for i in range(2,N+1):
-    dp[i]=dp[i-1]+dp[i-2]
-print (dp[-1])
+X,Y = map(int,input().split())
+import math
+temp = math.sqrt(X**2+Y**2)
+print(X/temp,Y/temp)
