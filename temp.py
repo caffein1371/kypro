@@ -7,24 +7,23 @@ _INPUT = """\
 
 
 
-
-
-
-
-
-
-
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-A,B = map(int,input().split())
-from decimal import Decimal, ROUND_HALF_UP
-#temp = round((2*B/A)**(-2/3)-1)
-temp = Decimal((2*B/A)**(-2/3)-1).quantize(Decimal('1'), rounding=ROUND_HALF_UP) 
-#print (temp)
-import math
-if math.sqrt(temp+1)!=0:
-    #print ((B*temp)+A/math.sqrt(temp+1))
-    print (Decimal((B*temp)+A/math.sqrt(temp+1)).quantize(Decimal('0.00000001'), rounding=ROUND_HALF_UP))
-else:
-    print (A)
+from math import sqrt
+
+
+A, B = map(int, input().split())
+
+L, R = 0, (A + B - 1) // B
+
+while L + 1 < R:
+    M = (L + R) // 2
+    condition_0 = A * A > B * B * M * (M + 1) * (2 * M + 1)
+    condition_1 = A ** 4 + B ** 4 * M * M * (M + 1) * (M + 1) > 2 * A * A * B * B * M * (M + 1) * (2 * M + 1)
+    if condition_0 and condition_1:
+        L = M
+    else:
+        R = M
+
+print(A / sqrt(L + 1) + B * L)
