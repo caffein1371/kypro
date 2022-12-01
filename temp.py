@@ -3,25 +3,24 @@ import io
 import sys
 
 _INPUT = """\
-abaababaab
+4
+1 3 5 2
+2 3 1 4
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-S = input()
-import collections
-#print (S)
-flag = True
+N= int(input())
+Alist = list(map(int,input().split()))
+Blist = list(map(int,input().split()))
 
-while flag:
-    S =S[:-1]
-    #print (S)
-    #print (c)
-    temp = len(S)//2
-    if len(S)%2==0:
-        if S[0:temp]==S[temp:len(S)]:
-            flag=False
-    
-#print(S)
-print (len(S))
+ans = 0
+ans1 = 0
+for i in range(N):
+    if Alist[i]==Blist[i]:
+        ans+=1
+    if Alist[i] in Blist and Alist[i]!=Blist[i]:
+        ans1+=1
+print (ans)
+print (ans1)
