@@ -1,15 +1,3 @@
-##########################################
-import io
-import sys
-
-_INPUT = """\
-280
-
-
-
-"""
-sys.stdin = io.StringIO(_INPUT)
-##########################################
 def prime_factorize(n):
     a = []
     while n % 2 == 0:
