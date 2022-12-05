@@ -3,13 +3,18 @@ import io
 import sys
 
 _INPUT = """\
-3
+10 20 30 40
+
 
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N = int(input())
-temp = ["ACL" for i in range((N))]
-print ("".join(temp))
+A,B,C,D = map(int,input().split())
+if B<C:
+    print ("No")
+elif D<A:
+    print ("No")
+else:
+    print ("Yes")
