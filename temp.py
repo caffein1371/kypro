@@ -3,7 +3,7 @@ import io
 import sys
 
 _INPUT = """\
-ZONeZONeZONe
+4 5
 
 
 
@@ -15,8 +15,8 @@ ZONeZONeZONe
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-S = input()
-print (S.count("ZONe"))
+R,C = map(int,input().split())
+
 
 
 
