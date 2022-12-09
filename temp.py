@@ -3,8 +3,8 @@ import io
 import sys
 
 _INPUT = """\
-4 5
 
+4 5
 
 
 
@@ -15,6 +15,7 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
+
 R,C = map(int,input().split())
 
 
