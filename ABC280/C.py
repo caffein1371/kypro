@@ -1,18 +1,3 @@
-##########################################
-import io
-import sys
-
-_INPUT = """\
-3 600
-180 240 120
-
-
-
-
-"""
-sys.stdin = io.StringIO(_INPUT)
-##########################################
-
 N,T = map(int,input().split())
 Alist = list(map(int,input().split()))
 temp = [0 for i in range((10**5)+1)]
@@ -24,5 +9,3 @@ for i in range(len(Alist)):
         print (i+1,rem-sum)
         quit()
     sum+=Alist[i]
-
-    
