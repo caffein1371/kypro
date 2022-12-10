@@ -3,7 +3,8 @@ import io
 import sys
 
 _INPUT = """\
-4 11
+1000 1 1
+
 
 
 
@@ -14,12 +15,11 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-a,b = map(int,input().split())
-if a+b==15:
-    print ("+")
-elif a*b==15:
-    print ("*")
-else:
-    print ("x")
-
+X,Y,Z = map(int,input().split())
+ans = 10**6
+while True:
+    if ans/Z<Y/X:
+        print (ans)
+        break
+    ans-=1
 
