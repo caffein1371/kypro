@@ -10,11 +10,10 @@ _INPUT = """\
 
 
 
-
-
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
+
 X,Y,Z = map(int,input().split())
 ans = 10**6
 while True:
