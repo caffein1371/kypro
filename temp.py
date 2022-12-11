@@ -12,6 +12,7 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
+
 N = int(input())
 Alist = [0]+list(map(int,input().split()))
 #print(Alist)
