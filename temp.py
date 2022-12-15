@@ -3,7 +3,13 @@ import io
 import sys
 
 _INPUT = """\
-32
+1 2
+
+
+
+
+
+
 
 
 
@@ -12,6 +18,10 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-ans = [1, 1, 1, 2, 1, 2, 1, 5, 2, 2, 1, 5, 1, 2, 1, 14, 1, 5, 1, 5, 2, 2, 1, 15, 2, 2, 5, 4, 1, 4, 1, 51]
-K = int(input())
-print (ans[K-1])
+H,W = map(int,input().split())
+if H==1 or W==1:
+    print (1)
+elif (H*W)%2==0:
+    print (H*W//2)
+else:
+    print (H*W//2+1)
