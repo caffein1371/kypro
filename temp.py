@@ -3,7 +3,11 @@ import io
 import sys
 
 _INPUT = """\
-1 2
+11 30
+12 1
+
+
+
 
 
 
@@ -18,10 +22,9 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-H,W = map(int,input().split())
-if H==1 or W==1:
+M1,D1 = map(int,input().split())
+M2,D2 = map(int,input().split())
+if (abs(M2-M1)==1 or abs(M2-M1)==11) and abs(D1-D2)>1:
     print (1)
-elif (H*W)%2==0:
-    print (H*W//2)
 else:
-    print (H*W//2+1)
+    print (0) 
