@@ -3,12 +3,9 @@ import io
 import sys
 
 _INPUT = """\
-5 4
-o--o
-----
-----
-----
-----
+2 3
+RDU
+LRU
 
 
 
@@ -22,15 +19,21 @@ o--o
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
 H,W = map(int,input().split())
-S = []
+G = []
+c,r=0,0
 for i in range(H):
-    s = input()
-    for j in range(W):
-        if s[j]=='o':
-            r = j
-            c = i
-            S.append([c,r])
-a,b = S[0]
-c,d = S[1]
-print (abs(a-c)+abs(b-d))
+    g = input()
+    G.append(g)
+while True:
+    if G[c][r]=="U" and c!=0:
+        c-=1
+    elif G[c][r]=="D" and c!=H-1:
+        c+=1
+    elif G[c][r]=="L" and r!=0:
+        r-=1
+    elif G[c][r]=="R" and r!=W-1:
+        r+=1
+    else:
+        break
 
+print (c+1,r+1)
