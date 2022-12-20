@@ -3,9 +3,7 @@ import io
 import sys
 
 _INPUT = """\
-4 1 10
-10 7 5
-2 10
+10
 
 
 
@@ -15,18 +13,14 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N,M,T = map(int,input().split())
-Alist = list(map(int,input().split()))
-X = []
-Y = []
-for i in range(M):
-    x,y = map(int,input().split())
-    Alist[x-1]-=y
+N = int(input())
+ans = [[1 for i in range(j)]for j in range(1,N+1)]
 
-for i in range(len(Alist)):
-    T-=Alist[i]
-
-if T<=0:
-    print ("No")
-else:
-    print ("Yes")
+for i in range(0,N):
+    for j in range(i):
+        if i==j or j==0:
+            pass
+        else:
+            ans[i][j]=ans[i-1][j-1]+ans[i-1][j]
+    print (*ans[i])
+         
