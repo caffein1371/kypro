@@ -3,8 +3,8 @@ import io
 import sys
 
 _INPUT = """\
-10
-
+7 2 5
+3
 
 
 
@@ -13,14 +13,14 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N = int(input())
-ans = [[1 for i in range(j)]for j in range(1,N+1)]
+A,B,C = map(int,input().split())
+K = int(input())
 
-for i in range(0,N):
-    for j in range(i):
-        if i==j or j==0:
-            pass
-        else:
-            ans[i][j]=ans[i-1][j-1]+ans[i-1][j]
-    print (*ans[i])
-         
+A1 = A*2
+B1 = B*2
+C1 = C*2
+
+if B1>A or C1>B:
+    print ("Yes")
+else:
+    print ("No")
