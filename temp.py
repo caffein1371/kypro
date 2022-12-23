@@ -3,26 +3,25 @@ import io
 import sys
 
 _INPUT = """\
-4
-ooxx
-xoox
-xxxx
-xxxx
+7 2 5
+3
+
+
+
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N= int(input())
-S = []
-for i in range(N):
-    s = input()
-    S.append(s)
-ans = [["x" for j in range(N)]for i in range(N)]
-for i in range(N):
-    for j in range(N):
-        ans[j][i]=S[N-1-i][j]
-
-for i in range(N):
-    a = ans[i]
-    print ("".join(a))
+A,B,C = map(int,input().split())
+K = int(input())
+for i in range(K):
+    if A>=B:
+        B = 2*B
+    elif B>=C:
+        C = 2*C
+if A<B<C:
+    print ("Yes")
+else:
+    print ("No")
+#print (A,B,C)
