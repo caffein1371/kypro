@@ -3,8 +3,9 @@ import io
 import sys
 
 _INPUT = """\
-7 2 5
-3
+2 2
+.#
+#.
 
 
 
@@ -13,15 +14,24 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-A,B,C = map(int,input().split())
-K = int(input())
-for i in range(K):
-    if A>=B:
-        B = 2*B
-    elif B>=C:
-        C = 2*C
-if A<B<C:
-    print ("Yes")
-else:
-    print ("No")
-#print (A,B,C)
+H,W = map(int,input().split())
+S = []
+ans = 0
+for i in range(H):
+    s = input()
+    S.append(s)
+    for i in range(1,W):
+        if s[i]=="." and s[i-1]==".":
+            ans+=1
+#print (S)
+temp =[["" for i in range(H)] for j in range(W)]
+for i in range(len(S)):
+    for j in range(len(S[i])):
+        temp[j][i]= S[i][j]
+for i in range(len(temp)):
+    #print (temp[i])
+    for j in range(1,len(temp[i])):
+        if temp[i][j]=="." and temp[i][j-1]==".":
+            ans+=1
+
+print (ans)
