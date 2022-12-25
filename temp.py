@@ -3,7 +3,7 @@ import io
 import sys
 
 _INPUT = """\
-1355506027
+2 3
 
 
 
@@ -16,7 +16,9 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-S = input()
-#print (len(S))
-temp = S.count("00")
-print (len(S)-temp)
+N,M = map(int,input().split())
+import itertools
+a = [i for i in range(1,M+1)]
+ 
+for v in itertools.combinations(a,N):
+    print (*v)
