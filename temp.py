@@ -3,8 +3,12 @@ import io
 import sys
 
 _INPUT = """\
+5
 4
-0 1 3 8
+2
+
+
+
 
 
 
@@ -13,14 +17,10 @@ _INPUT = """\
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
 N = int(input())
+H = int(input())
+W = int(input())
 
-import math
+a = N-H+1
+b = N-W+1
 
-Alist = list(map(int,input().split()))
-n =0
-for i in range(len(Alist)):
-    if Alist[i]!=0:
-        n+=1
-
-#print (sum(Alist)/n)
-print(math.ceil(sum(Alist)/n))
+print (a*b)
