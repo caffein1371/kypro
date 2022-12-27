@@ -3,9 +3,8 @@ import io
 import sys
 
 _INPUT = """\
-5
-4
-2
+10 2 4
+
 
 
 
@@ -16,11 +15,8 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N = int(input())
-H = int(input())
-W = int(input())
-
-a = N-H+1
-b = N-W+1
-
-print (a*b)
+A,B,C = map(int,input().split())
+if A<C<B or A>C>B:
+    print ("Yes")
+else:
+    print ("No")
