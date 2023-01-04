@@ -3,18 +3,9 @@ import io
 import sys
 
 _INPUT = """\
-10 587586158 185430194
-894597290 708587790
-680395892 306946994
-590262034 785368612
-922328576 106880540
-847058850 326169610
-936315062 193149191
-702035777 223363392
-11672949 146832978
-779291680 334178158
-615808191 701464268
-
+3
+5 6
+5 6 10
 
 
 
@@ -28,10 +19,19 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N,H,W = map(int,input().split())
-ans = 0
-for i in range(N):
-    a,b = map(int,input().split())
-    if H<=a and W<=b:
-        ans+=1
-print (ans)
+N= int(input())
+A,B = map(int,input().split())
+Plist = list(map(int,input().split()))
+temp1 = 0
+temp2 = 0
+temp3 = 0
+for i in Plist:
+    if i<=A:
+        temp1+=1
+    if A+1<=i<=B:
+        temp2+=1
+    if B+1<=i:
+        temp3+=1
+temp = min(temp1,temp2,temp3)
+
+print (temp)
