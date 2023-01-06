@@ -3,12 +3,10 @@ import io
 import sys
 
 _INPUT = """\
-abc
-
-
-
-
-
+abcdef
+2
+3 5
+1 4
 
 
 
@@ -18,9 +16,20 @@ abc
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-S = input()
-if len(S)%2==0:
-    print (S)
-else:
-    print (S[::-1])
+S = list(input())
+N = int(input())
+LR = []
+import copy
+temp = copy.copy(S)
+for i in range(N):
+    l,r = map(int,input().split())
+    a = temp[l-1:r][::-1]
+    #print (a)
+    temp[l-1:r]=a
+    #print ("".join(temp)) 
+
+    
+print ("".join(temp)) 
+
+
 
