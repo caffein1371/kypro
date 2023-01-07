@@ -3,33 +3,34 @@ import io
 import sys
 
 _INPUT = """\
-abcdef
 2
-3 5
-1 4
-
-
-
-
+3
+8
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-S = list(input())
-N = int(input())
-LR = []
-import copy
-temp = copy.copy(S)
-for i in range(N):
-    l,r = map(int,input().split())
-    a = temp[l-1:r][::-1]
-    #print (a)
-    temp[l-1:r]=a
-    #print ("".join(temp)) 
+a = int(input())
+b = int(input())
+n = int(input())
 
+import math
+temp = math.gcd(a,b)
+ans = (a*b)/(temp) 
+
+i=1
+temp =ans
+while ans<n:
+    ans =ans*i
+    i+=1
+    if ans<n:
+        ans = temp
     
-print ("".join(temp)) 
+
+print (int(ans))
+
+
 
 
 
