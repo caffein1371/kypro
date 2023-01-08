@@ -3,32 +3,38 @@ import io
 import sys
 
 _INPUT = """\
-2
 3
-8
+2023
+63
+1059872604593911
+
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-a = int(input())
-b = int(input())
-n = int(input())
-
+T = int(input())
 import math
-temp = math.gcd(a,b)
-ans = (a*b)/(temp) 
+for i in range(T):
+    test = int(input())
+    p,q = 0,0
 
-i=1
-temp =ans
-while ans<n:
-    ans =ans*i
-    i+=1
-    if ans<n:
-        ans = temp
-    
+    for j in range(2,int((test+1)**(1/3))+1):
+        #print (int((test+1)**(1/3)))
+        if test%j!=0:
+            continue
+        if (test/j)%j==0:
+            p = j
+            q = int (test/j/j)
+        else:
+            q = j
+            p = int(math.sqrt(test/j))
+        break
+    print (p,q)
 
-print (int(ans))
+        
+
+
 
 
 
