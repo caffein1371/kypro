@@ -3,39 +3,41 @@ import io
 import sys
 
 _INPUT = """\
-3
-2023
-63
-1059872604593911
+2
+1 0
+
+
+
+
+
 
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-T = int(input())
-import math
-from decimal import Decimal, ROUND_HALF_UP, ROUND_HALF_EVEN
-for i in range(T):
-    N=int(input())
-    
-    #print (temp)
-    
-    for p in range(2,int(N**(1/3))+1):
-        if N%p==0:
-            q = N//p
-            if q%p==0:
-                print (p,N//(p**2))
-                break
-            else:
-                print (int(math.sqrt(q)),p)
-                break
+N = int(input())
+Alist = list(map(int,input().split()))
+Alist = list(set(Alist))
+Alist = sorted(Alist,reverse=True)
+ans= -1
 
-        
+gu = []
+ki = []
+for i in range(len(Alist)):
+    if Alist[i]%2==0:
+        ki.append(Alist[i])
+    else:
+        gu.append(Alist[i])
+kis =-1
+gus =-1
+try:
+    kis=ki[0]+ki[1]
+except:
+    pass
+try :
+    gus = gu[0]+gu[1]
+except:
+    pass
 
-
-
-
-
-
-
+print (max(kis,gus))
