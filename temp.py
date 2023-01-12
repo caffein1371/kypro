@@ -3,9 +3,8 @@ import io
 import sys
 
 _INPUT = """\
-999983
-
-
+20 1 30
+1 10
 
 
 
@@ -14,16 +13,24 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-K = int(input())
-ans = []
-answer = 0
-temp1= 0
-while len(ans)<12:
-    ans.append('7')
-    temp = int(''.join(ans))
-    temp1+=temp
-    print (temp)
-    if temp%K==0:
-        break
+N,M,T = map(int,input().split())
+AB = []
+temp = 0
+ans = N
+for i in range(M):
+    A,B = map(int,input().split())
+    ans = ans-(A-temp)
+    if ans<=0:
+        print ('No')
+        quit()
+    if ans+(B-A)>=N:
+        ans = N
+    else:
+        ans = ans+(B-A)
+    temp = B
 
-print (len(ans))
+ans = ans-(T-temp)
+if ans<=0:
+    print ('No')
+else:
+    print ('Yes')
