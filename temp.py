@@ -3,8 +3,8 @@ import io
 import sys
 
 _INPUT = """\
-20 1 30
-1 10
+17
+
 
 
 
@@ -13,24 +13,8 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N,M,T = map(int,input().split())
-AB = []
-temp = 0
-ans = N
-for i in range(M):
-    A,B = map(int,input().split())
-    ans = ans-(A-temp)
-    if ans<=0:
-        print ('No')
-        quit()
-    if ans+(B-A)>=N:
-        ans = N
-    else:
-        ans = ans+(B-A)
-    temp = B
+L = int(input())
+ans = 1
+from scipy.special import comb
 
-ans = ans-(T-temp)
-if ans<=0:
-    print ('No')
-else:
-    print ('Yes')
+print (comb(L-1,11,True))
