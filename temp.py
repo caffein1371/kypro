@@ -27,4 +27,5 @@ for i in range(N):
     else:
         print (f+'('+str(d[f])+')')
     d[f]+=1
+    
 #print (d)
