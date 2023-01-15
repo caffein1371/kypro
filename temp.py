@@ -3,12 +3,8 @@ import io
 import sys
 
 _INPUT = """\
-5
-newfile
-newfile
-newfolder
-newfile
-newfolder
+100 200 50 20
+40 10
 
 
 
@@ -16,16 +12,10 @@ newfolder
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N = int(input())
-F = []
-from collections import defaultdict
-d = defaultdict(int)
-for i in range(N):
-    f = input()
-    if d[f]==0:
-        print (f)
-    else:
-        print (f+'('+str(d[f])+')')
-    d[f]+=1
-    
-#print (d)
+A,B,C,K = map(int,input().split())
+S,T = map(int,input().split())
+temp = A*S+B*T
+if S+T>=K:
+    print (temp-(S+T)*C)
+else:
+    print (temp)
