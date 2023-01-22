@@ -14,11 +14,14 @@ rrefa
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N,A,B = map(int,input().split())
-S = input()
-
-from collections import deque
-import collections
-
-c = collections.Counter(S)
-print (c)
+n, a, b = map(int, input().split())
+s = input()
+s += s
+ans = 1 << 60
+for i in range(n):
+    tmp = a * i
+    for j in range(n // 2):
+        if s[i + j] != s[i + n - 1 - j]:
+            tmp += b
+    ans = min(ans, tmp)
+print(ans)
