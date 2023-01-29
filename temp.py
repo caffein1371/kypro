@@ -3,8 +3,8 @@ import io
 import sys
 
 _INPUT = """\
-10 53462
-103 35322 232 342 21099 90000 18843 9010 35221 19352
+4 10
+6 1 2 7
 
 
 
@@ -20,7 +20,7 @@ right = 0
 sume = 0
 for left in range(N):
     #print (left)
-    while (right<N and sume<K):
+    while (right<N and sume+alist[right]<K):
         sume+=alist[right]
         right+=1
     
