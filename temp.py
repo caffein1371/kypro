@@ -14,6 +14,7 @@ sys.stdin = io.StringIO(_INPUT)
 N,K = map(int,input().split())
 alist = list(map(int,input().split()))
 
+
 res = 0
 right = 0 
 sume = 0
