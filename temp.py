@@ -16,20 +16,13 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N,M = map(int,input().split())
-A = []
-mod = 1000000007
+N,K = map(int,input().split())
+Alist = list(map(int,input().split()))
 
-A = [True for i in range(N+3)]
-for i in range(M):
-    a = int(input())
-    A[a]=False
+ans = 1
+for i in range(K):
+    ans*=Alist[i]
+for i in range(K,N):
+    
+    
 
-dp=[0 for i in range(N+3)]
-dp[0]=1
-for n in range(0,N):
-    if A[n+1]==True:
-        dp[n+1]+=dp[n]
-    if A[n+2]==True:
-        dp[n+2]+=dp[n]
-print (dp[N]%mod)
