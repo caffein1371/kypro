@@ -6,20 +6,17 @@ _INPUT = """\
 4
 
 
-
-
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
+from functools import lru_cache
+@lru_cache(maxsize=None)
+
+def S(n):
+    if n==1:
+        return [1]
+    else:
+        return S(n-1)+[n]+S(n-1)
+
 N = int(input())
-
-temp = 1
-ans = []
-for i in range(1,N):
-    ans.append(i)
-
-temp = ans.copy()
-
-ans.append(N)
-ans+=(temp[::-1])
-print (ans)
+print (*S(N))
