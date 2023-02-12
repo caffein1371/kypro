@@ -3,20 +3,32 @@ import io
 import sys
 
 _INPUT = """\
-4
+10 6
+1 2 3 7 8 9
+
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-from functools import lru_cache
-@lru_cache(maxsize=None)
+N,M = map(int,input().split())
+Alist = list(map(int,input().split()))
+tmp = [i for i in range(1,N+1)]
+if M==0:
+    print (*tmp)
+    quit()
 
-def S(n):
-    if n==1:
-        return [1]
-    else:
-        return S(n-1)+[n]+S(n-1)
+flag = False
 
-N = int(input())
-print (*S(N))
+ans = [0]
+for i in range(N):
+    if i+1 not in Alist:
+        #レ点がついていないもの
+        ans.append(i+1)
+
+print (*ans)
+for i in range(len(ans)-1):
+    for j in range(ans[i+1]-ans[i]):
+        print (ans[i+1]-j,end=' ')
+
+    
