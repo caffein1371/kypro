@@ -3,30 +3,8 @@ import io
 import sys
 
 _INPUT = """\
-10
-1 8 4 15 7 5 7 5 8 0
-20
-2 7 0
-3 7
-3 8
-1 7
-3 3
-2 4 4
-2 4 9
-2 10 5
-1 10
-2 4 2
-1 10
-2 3 1
-2 8 11
-2 3 14
-2 1 9
-3 8
-3 8
 3 1
-2 6 5
-3 7
-
+1 2
 
 
 
@@ -35,27 +13,52 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-from collections import defaultdict
+# UnionFind
+class UnionFind:
+    def __init__(self,n):
+        self.n=n
+        self.parent_size=[-1]*n
+ 
+    def leader(self,a):
+        if self.parent_size[a]<0: return a
+        self.parent_size[a]=self.leader(self.parent_size[a])
+        return self.parent_size[a]
+ 
+    def merge(self,a,b):
+        x,y=self.leader(a),self.leader(b)
+        if x == y: return 
+        if abs(self.parent_size[x])<abs(self.parent_size[y]):x,y=y,x
+        self.parent_size[x] += self.parent_size[y]
+        self.parent_size[y]=x
+        return 
+ 
+    def same(self,a,b):
+        return self.leader(a) == self.leader(b)
+ 
+    def size(self,a):
+        return abs(self.parent_size[self.leader(a)])
+ 
+    def groups(self):
+        result=[[] for _ in range(self.n)]
+        for i in range(self.n):
+            result[self.leader(i)].append(i)
+        return [r for r in result if r != []]
 
-n = int(input())
-a = list(map(int, input().split()))
-g = 0
-base = 0
-diff = defaultdict(int)
+N,M = map(int,input().split())
+UF = UnionFind(N)
+for i in range(M):
+    a,b = map(int,input().split())
+    UF.merge(a-1,b-1)
 
-q = int(input())
-for i in range(q):
-    t = list(map(int, input().split()))
-    if t[0] == 1:
-        #gをインクリメント
-        g += 1
-        #初期化する値を記憶
-        base = t[1]
-    elif t[0] == 2:
-        #
-        diff[(g, t[1])] += t[2]
-    else:
-        if g > 0:
-            print(base + diff[(g, t[1])])
-        else:
-            print(a[t[1] - 1] + diff[(g, t[1])])
+ans = []
+for i in range(N):
+    #print (UF.leader(i))
+    ans.append(UF.leader(i))
+ans = set(ans)
+#print (ans)
+
+
+if len(ans)==1:
+    print (0)
+else:
+    print (len(ans)-1)
