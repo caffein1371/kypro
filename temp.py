@@ -35,7 +35,6 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-"""AtCoder Beginner Contest 278 D"""
 from collections import defaultdict
 
 n = int(input())
@@ -48,9 +47,12 @@ q = int(input())
 for i in range(q):
     t = list(map(int, input().split()))
     if t[0] == 1:
+        #gをインクリメント
         g += 1
+        #初期化する値を記憶
         base = t[1]
     elif t[0] == 2:
+        #
         diff[(g, t[1])] += t[2]
     else:
         if g > 0:
