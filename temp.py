@@ -3,7 +3,14 @@ import io
 import sys
 
 _INPUT = """\
-1 1000000000
+2 10
+20 20
+
+
+
+
+
+
 
 
 
@@ -11,19 +18,22 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-t,N = map(int,input().split())
+N,x = map(int,input().split())
+Alist = list(map(int,input().split()))
+Alist = list(sorted(Alist))
+temp = 0
+ans=0
+Blist = []
+if sum(Alist)<x:
+        print (N-1)
+        quit()
 
-temp = [1]*(100+t)
-ans = []
-for i in range(100):
-    #整数型の切り捨て除算を用いて、(100+t)×A を 100 で割る形でf(A) を計算する
-    temp[((t+100)*i)//100]=0
-#print (temp)
-for i in range(100+t):
-    if temp[i]==1:
-        ans.append(i)
-#print (ans)
+for i in range(len(Alist)):
+        if temp+Alist[i]<=x:
+                temp+=Alist[i]
+                ans+=1
+        else:
+                break
+print (ans)
 
-q,mod = divmod(N-1,t)
-answer = q*(t+100)+ans[mod]
-print (answer)
+
