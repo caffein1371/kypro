@@ -11,18 +11,21 @@ _INPUT = """\
 
 
 
-
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
 N,K = map(int,input().split())
 Alist = list(map(int,input().split()))
-Alist = sorted(set(Alist))
+Alist = set(Alist)
 ans = -1
-
-import itertools
-flag = False
-for i in range(len(Alist)):
-    if i!=Alist[i]:
-        print (i-1)
+#print (Alist)
+for i in range(K):
+    #print (i)
+    if i not in Alist:
+        print(i)
         quit()
+        
+if ans==-1:
+    print (K)
+else:
+    print (ans)
