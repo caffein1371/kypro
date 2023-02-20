@@ -3,8 +3,12 @@ import io
 import sys
 
 _INPUT = """\
-7 3
-2 0 2 3 2 1 9
+5 2 4
+2
+4
+6
+8
+10
 
 
 
@@ -14,18 +18,25 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N,K = map(int,input().split())
-Alist = list(map(int,input().split()))
-Alist = set(Alist)
-ans = -1
-#print (Alist)
-for i in range(K):
-    #print (i)
-    if i not in Alist:
-        print(i)
+N,A,B = map(int,input().split())
+#全体にPかけた場合，平均はP倍，最大ー最小はP倍
+#全体にQを足した場合，平均はQ足され，最大ー最小は変わらない
+#最大ー最小はP倍によって左右される
+P = 0 
+Q = 0
+temp1 = 0
+temp2 = 10**9
+temp3 = 0
+for i in range(N):
+        s = int(input())
+        temp1+=s
+        temp2=min(temp2,s)
+        temp3=max(temp3,s)
+temp4 = temp3-temp2
+if temp4==0:
+        print (-1)
         quit()
-        
-if ans==-1:
-    print (K)
-else:
-    print (ans)
+P = B/temp4
+Q = A-(temp1/N)*P
+
+print (P,Q)
