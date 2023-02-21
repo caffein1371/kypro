@@ -3,23 +3,31 @@ import io
 import sys
 
 _INPUT = """\
-3 200
-3 10 10 10
-3 10 10 10
-5 2 2 2 2 2
+99
+
 
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N,X = map(int,input().split())
-Alist = []
-for i in range(N):
-        Llist = list(map(int,input().split()))
-        Alist.append(Llist[1::])
-print (Alist)
-import itertools
+# N = input()
+# ans = 0
+# if len(N)>1:
+#         if N[0]!='9':
+#                 ans+=int(N[0])-1
+#                 ans+=len(N[1::])*9
+#         if N[0]=='9' :
+#                 ans+=8
+#                 ans+=len(N[1::])*9
+#         print (ans)
+# else:
+#         print (int(N))
 
-for i in range(N):
-        for v in itertools.combinations(Alist,1):
+N=int(input())
+S=str(N)
+c=0
+for s in S:
+  c+=int(s)
+d=(len(S)-1)*9+int(S[0])-1
+print(max(c,d))
