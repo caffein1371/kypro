@@ -3,26 +3,23 @@ import io
 import sys
 
 _INPUT = """\
-6 5
-8 -3 5 7 0 -4
-
+3 200
+3 10 10 10
+3 10 10 10
+5 2 2 2 2 2
 
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N,K = map(int,input().split())
-Alist = list(map(int,input().split()))
-ans = 0
-tmp = [0 for i in range(N+1)]
+N,X = map(int,input().split())
+Alist = []
 for i in range(N):
-        tmp[i+1]=tmp[i]+Alist[i]
-from collections import defaultdict
-mp = defaultdict(int)
+        Llist = list(map(int,input().split()))
+        Alist.append(Llist[1::])
+print (Alist)
+import itertools
 
-for r in range(1,N+1):
-        mp[tmp[r-1]]+=1
-        ans+=mp[tmp[r]-K]
-
-print (ans)
+for i in range(N):
+        for v in itertools.combinations(Alist,1):
