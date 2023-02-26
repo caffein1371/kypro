@@ -3,10 +3,8 @@ import io
 import sys
 
 _INPUT = """\
-18278
-
-
-
+5
+RLURU
 
 
 
@@ -15,27 +13,30 @@ _INPUT = """\
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
 N = int(input())
-abc= ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
-mod = 26
-amari = -1
-iter = 0
-# if N==1:
-#         print ('a')
-#         exit()
-
-# while mod**iter<N:
-#         iter+=1
-# #print (iter)
-ans = []
-# for i in range(iter,-1,-1):
-#         #print (i)
-#         N,temp = divmod(N,mod)
-#         temp-=1
-#         ans.append(abc[temp])
+S = input()
+x,y = 0,0
+flag = False
+ans = ([[0,0]])
+iter = 1
+for i in range(N):
+        if S[i]=='U':
+                y+=1
+        elif S[i]=='R':
+                x+=1
+        elif S[i]=='L':
+                x-=1
+        elif S[i]=='D':
+                y-=1
         
-while N!=0:
-        N-=1
-        M = N%mod
-        ans.append(abc[M])
-        N=N//mod
-print(''.join(ans[::-1]))
+        # if [x,y] in ans :
+        #         flag = True
+        #         break
+        ans.append([x,y])
+        iter+=1
+arr = list(map(list, set(map(tuple, ans))))
+# print (arr)
+# print (iter)
+if iter!=len(arr):
+        print ('Yes')
+else:
+        print ('No')
