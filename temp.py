@@ -3,8 +3,10 @@ import io
 import sys
 
 _INPUT = """\
-10
-2 2 4 1 1 1 4 2 2 1
+10 6 9
+1 3 5 7 8 9
+1 2 3 4 5 6 5 6 2
+
 
 
 
@@ -12,25 +14,11 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N = int(input())
+N,K,Q =map(int,input().split())
 Alist = list(map(int,input().split()))
-from collections import deque
+List = list(map(int,input().split()))
+for i in range(Q):
+        if Alist[List[i]-1]+1<=N and Alist[List[i]-1]+1 not in Alist:
+                Alist[List[i]-1]+=1
 
-d = deque()
-ans = 0
-for i in range(N):
-        for j in range(Alist[i]):
-                if j==0:
-                        d.append(1)
-                else:
-                        d.append(0)
-        #print (d)
-        while len(d)>3:
-                temp = d.popleft()
-                if temp==1:
-                        ans+=1
-print (ans)
-
-
-
-
+print (*Alist)
