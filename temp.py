@@ -3,7 +3,8 @@ import io
 import sys
 
 _INPUT = """\
-217
+10
+2 2 4 1 1 1 4 2 2 1
 
 
 
@@ -11,18 +12,25 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-X = int(input())
-bag = [100,101,102,103,104,105]
+N = int(input())
+Alist = list(map(int,input().split()))
+from collections import deque
 
-dp = [False for i in range(10**5+1000)]
-dp[0]=True
+d = deque()
+ans = 0
+for i in range(N):
+        for j in range(Alist[i]):
+                if j==0:
+                        d.append(1)
+                else:
+                        d.append(0)
+        #print (d)
+        while len(d)>3:
+                temp = d.popleft()
+                if temp==1:
+                        ans+=1
+print (ans)
 
-for i in range(X):
-        if dp[i]:
-                for j in range(6):
-                        dp[i+j+100]=True
 
-if dp[X]:
-        print (1)
-else:
-        print (0)
+
+
