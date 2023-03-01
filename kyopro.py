@@ -3,15 +3,19 @@ import io
 import sys
 
 _INPUT = """\
-1000000000 1000000000 1000000000
-
-
+0011
 
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-A,B,C = map(int,input().split())
-print (A*B*C%(10**9+7))
-
+S= input()
+#0と1でしか構成されないため、最後に残るのは0だけ、または1のみ
+#01または10の組み合わせで消えていくので011111のときは１回
+#01または10の組み合わせ数はmin(0の数,1の数)×2個
+num0 = S.count('0')
+num1 = S.count('1')
+ans = min(num0,num1)*2
+    
+print (ans)
