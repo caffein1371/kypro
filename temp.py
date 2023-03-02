@@ -17,10 +17,11 @@ plist = list(map(int,input().split()))
 temp = [0 for i in range(210001)]
 iter =0
 for i in range(N):
-        #print (plist[:i+1])
+        #plistの
         temp[plist[i]]+=1
-        #iterから始める
+        #iterから探索を始める
         #tempが0であれば，whileから抜ける
+        #以下のループで既に使われたかどうかを判定する
         while temp[iter]!=0:
                 iter+=1
         print (iter)
