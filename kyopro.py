@@ -3,8 +3,8 @@ import io
 import sys
 
 _INPUT = """\
-1000000000000000 1 1000000000000000
-
+5
+1 4 3 5 8
 
 
 
@@ -12,8 +12,14 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
+N = int(input())
 Alist = list(map(int,input().split()))
-#Alist = list(sorted(Alist))
-X =2*Alist[1]-Alist[0]-Alist[2]
-k = max(0,((1-X)//2))
-print (X+3*k)
+Alist = sorted(Alist)
+import itertools
+ans = -1
+#print (Alist[-3:])
+for v in itertools.permutations(Alist[-3:],3):
+    temp = int(''.join(str(v[0])+str(v[1])+str(v[2])))
+    #print (temp)
+    ans = max(temp,ans)
+print (ans)
