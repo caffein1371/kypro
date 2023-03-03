@@ -3,7 +3,8 @@ import io
 import sys
 
 _INPUT = """\
-20160123
+1000000000000000 1 1000000000000000
+
 
 
 
@@ -11,5 +12,8 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N = int(input())
-print (N//25)
+Alist = list(map(int,input().split()))
+#Alist = list(sorted(Alist))
+X =2*Alist[1]-Alist[0]-Alist[2]
+k = max(0,((1-X)//2))
+print (X+3*k)
