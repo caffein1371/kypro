@@ -3,25 +3,32 @@ import io
 import sys
 
 _INPUT = """\
-10
-5 4 3 2 1 0 7 7 6 6
-
+4
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
 N = int(input())
-plist = list(map(int,input().split()))
-#2*10**5
-temp = [0 for i in range(210001)]
-iter =0
-for i in range(N):
-        #plistの
-        temp[plist[i]]+=1
-        #iterから探索を始める
-        #tempが0であれば，whileから抜ける
-        #以下のループで既に使われたかどうかを判定する
-        while temp[iter]!=0:
-                iter+=1
-        print (iter)
+#AB=XかつCD=N-Xになる(A,B,C,D)の個数をX=1,Nと求める
+#AB=Xとなる(A,B)=f(x)とすると
+import math
+ans=0
+for i in range(1,N):
+        X=i
+        Y=N-i
+        x,y=0,0
+        
+        for j in range(1,int(math.sqrt(X))+1):
+                if X%j==0:
+                        x+=1
+                        if X!=j*j:
+                                x+=1
+
+        for j in range(1,int(math.sqrt(Y))+1):
+                if Y%j==0:
+                        y+=1
+                        if Y!=j*j:
+                                y+=1
+        ans+=x*y
+print (ans)
