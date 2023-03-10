@@ -3,25 +3,23 @@ import io
 import sys
 
 _INPUT = """\
-hello
-3
-
+10
+1 2 3 4 5 6 7 8 9
 
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-s= input()
-k = int(input())
+#人１が人Nの何代前か求めてください
+N = int(input())
+Plist = [0]+list(map(int,input().split()))
 
-import itertools
 ans = 0
-if len(s)<k:
-    print (ans)
-    quit()
-temp = []
-for i in range(0,len(s)-k):
-    temp.append(s[i:i+k])
-ans = len(set(temp))
+temp = Plist[-1]
+#print (temp)
+while temp!=0:
+    temp= Plist[temp-1]
+    ans+=1
+    
 print (ans)
