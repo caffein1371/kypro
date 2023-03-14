@@ -3,21 +3,24 @@ import io
 import sys
 
 _INPUT = """\
-1 2 9 1
+34
+ABABAAABACDDDABADFFABABDABFAAABFAA
 
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N= list(map(int,input().split()))
-temp=[1,7,9,4]
-ans=[]
-for i in range(len(N)):
-        if N[i] in temp:
-                ans.append(N[i])
-ans = list(set(ans))
-if len(ans)==4:
-        print ("YES")
-else:
-        print ("NO")
+N = int(input())
+S = input()
+ans = 0
+for i in range(N):
+        if S[i]=='A':
+                ans+=4
+        elif S[i]=='B':
+                ans+=3
+        elif S[i]=='C':
+                ans+=2
+        elif S[i]=='D':
+                ans+=1
+print (float(ans/N))
