@@ -3,15 +3,14 @@ import io
 import sys
 
 _INPUT = """\
-xxxxxxxx
-
+hihi
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
 S = input()
-if S.count('x')>7:
-        print ('NO')
+if 'hi' in S:
+        print ('Yes')
 else:
-        print ('YES')
+        print ('No')
