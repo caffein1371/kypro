@@ -3,11 +3,13 @@ import io
 import sys
 
 _INPUT = """\
-5 10
+CODEFESTIVAL2014
+
+
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-A,B = map(int,input().split())
-print (max(A,B))
+S = input()
+print (S.replace('2014','2015'))
