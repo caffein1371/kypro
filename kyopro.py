@@ -26,3 +26,4 @@ for i in range(N):
             #print (i,j)
             quit()
 print ('No')
+
