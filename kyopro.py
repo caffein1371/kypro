@@ -3,8 +3,11 @@ import io
 import sys
 
 _INPUT = """\
-1
-F
+4 4
+.1.#
+###.
+.#2.
+#.##
 
 
 
@@ -14,14 +17,26 @@ F
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N = int(input())
-S = input()
-flag = True
-for i in range(len(S)-1):
-    if ((S[i]==S[i+1])==True):
-        print ('No')
-        quit()
+R,C =map(int,input().split())
+B = []
+for i in range(R):
+    Blist = input()
+    B.append(Blist)
 
-print ('Yes')
+ans = [['#' for i in range(C)] for j in range(R)]
 
+for i in range(R):
+    for j in range(C):
+        #p = B[i][j]
+        x =B[i][j]
+        for s in range(R):
+            for h in range(C):
+                if B[s][h]!='#' and B[s][h]!='.':
+                    p = int(B[s][h])
+                else:
+                    p = -1
+                if abs(i-s)+abs(j-h)<=p:
+                        x ='.'
+        print (x,end='')
+    print ()
         
