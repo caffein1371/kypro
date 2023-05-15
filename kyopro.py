@@ -3,11 +3,13 @@ import io
 import sys
 
 _INPUT = """\
-4 4
-.1.#
-###.
-.#2.
-#.##
+6
+ATTATA
+
+
+
+
+
 
 
 
@@ -17,26 +19,26 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-R,C =map(int,input().split())
-B = []
-for i in range(R):
-    Blist = input()
-    B.append(Blist)
+N = int(input())
+S = input()
 
-ans = [['#' for i in range(C)] for j in range(R)]
+import collections
 
-for i in range(R):
-    for j in range(C):
-        #p = B[i][j]
-        x =B[i][j]
-        for s in range(R):
-            for h in range(C):
-                if B[s][h]!='#' and B[s][h]!='.':
-                    p = int(B[s][h])
-                else:
-                    p = -1
-                if abs(i-s)+abs(j-h)<=p:
-                        x ='.'
-        print (x,end='')
-    print ()
-        
+c = collections.Counter(S)
+if N-c.most_common()[0][1]==c.most_common()[0][1]:
+    a = 0
+    b = 0
+    for i in S:
+        if i=='A':
+            a+=1
+            if a==c.most_common()[0][1]:
+                print ('A')
+                quit()
+        else:
+            b+=1
+            if b==c.most_common()[0][1]:
+                print ('T')
+                quit()
+
+else:
+    print (c.most_common()[0][0])
