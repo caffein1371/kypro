@@ -3,8 +3,11 @@ import io
 import sys
 
 _INPUT = """\
-6
-ATTATA
+4
+2 5 1 2
+
+
+
 
 
 
@@ -20,25 +23,20 @@ ATTATA
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
 N = int(input())
-S = input()
+Alist = list(map(int,input().split()))
+ans = []
+for i in range(N-1):
+    if Alist[i]-Alist[i+1]<-1:
+        for j in range(Alist[i],Alist[i+1],1):
+            ans.append(j)
+            #print (j)
+    elif Alist[i]-Alist[i+1]>1:
+        for j in range(Alist[i],Alist[i+1],-1):
+            ans.append(j)
+            #print (j)
 
-import collections
+    elif abs(Alist[i]-Alist[i+1])==1:
+        ans.append(Alist[i])
 
-c = collections.Counter(S)
-if N-c.most_common()[0][1]==c.most_common()[0][1]:
-    a = 0
-    b = 0
-    for i in S:
-        if i=='A':
-            a+=1
-            if a==c.most_common()[0][1]:
-                print ('A')
-                quit()
-        else:
-            b+=1
-            if b==c.most_common()[0][1]:
-                print ('T')
-                quit()
-
-else:
-    print (c.most_common()[0][0])
+ans.append(Alist[-1])
+print (*ans)
