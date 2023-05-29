@@ -3,9 +3,18 @@ import io
 import sys
 
 _INPUT = """\
-4 3
-3 14 15 92
-6 53 58
+4
+2 5 1 2
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -13,27 +22,21 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N,M = map(int,input().split())
+N = int(input())
 Alist = list(map(int,input().split()))
-Blist = list(map(int,input().split()))
-from collections import defaultdict
-c = defaultdict(int)
+ans = []
+for i in range(N-1):
+    if Alist[i]-Alist[i+1]<-1:
+        for j in range(Alist[i],Alist[i+1],1):
+            ans.append(j)
+            #print (j)
+    elif Alist[i]-Alist[i+1]>1:
+        for j in range(Alist[i],Alist[i+1],-1):
+            ans.append(j)
+            #print (j)
 
-Clist = Alist+Blist
-Clist = sorted(Clist)
-#print (Clist)
-for i in range(N+M):
-    c[Clist[i]]=i+1
+    elif abs(Alist[i]-Alist[i+1])==1:
+        ans.append(Alist[i])
 
-#print (c)
-#print (b)
-for i in range(N):
-    if N-1!=i:
-        print (c[Alist[i]],end =' ')
-    elif N-1==i:
-        print (c[Alist[i]])
-for j in range(M):
-    if M-1!=j:
-        print (c[Blist[j]],end =' ')
-    elif M-1==j:
-        print (c[Blist[j]])
+ans.append(Alist[-1])
+print (*ans)
