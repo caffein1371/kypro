@@ -3,29 +3,21 @@ import io
 import sys
 
 _INPUT = """\
-45
-tgxgdqkyjzhyputjjtllptdfxocrylqfqjynmfbfucbir
+5 15
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N = int(input())
-S = input()
+K,S = map(int,input().split())
 
-Ans = -1
-for i in range(1,N+1):
-    temp1 = S[0:i]
-    temp2 = S[i:]
-    temp1 = set(temp1)
-    temp2 = set(temp2)
-    ans = 0
-    for i in temp1:
-        for j in temp2:
-            if i==j:
-                ans+=1
-    Ans = max(ans,Ans)
-print (Ans)
-
-
+z = 0
+ans = 0
+for i in range(K+1):
+    for j in range(K+1):
+        z = S-i-j
+        if i+j+z==S and z>=0 and z<=K:
+            ans+=1
+            #print (i,j,z)
+print (ans)
 
