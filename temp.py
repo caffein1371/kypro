@@ -3,29 +3,22 @@ import io
 import sys
 
 _INPUT = """\
-4
-3 3 3 3
+10
+aabbbbaaca
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
 N = int(input())
-b = list(map(int,input().split()))
+S = input()
+i = 0
+ans = []
+while i<len(S):
+    j=i+1
+    while j<len(S) and S[i]==S[j]:
+        j+=1
+    ans.append(S[i])
+    i= j
 
-from collections import Counter
-
-temp = Counter(b)
-temp = dict(temp)
-#print (temp)
-temp[0]=0
-ans = 0
-for key,value in temp.items():
-    #print (key)
-    #print (value)
-    if key>value:
-        ans+=value
-    elif key<value:
-        ans+=value-key
-
-print (ans)
+print (len(ans))
