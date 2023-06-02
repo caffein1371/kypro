@@ -3,20 +3,29 @@ import io
 import sys
 
 _INPUT = """\
-aabbbbbbbbbbbbxyza
+5
+10 4 8 7 3
+
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-S = input()
+N = int(input())
+Hlist = list(map(int,input().split()))
 i = 0
-ans = []
-while i<len(S):
-    j=i+1
-    while j<len(S) and S[i]==S[j]:
-        j+=1
-    ans.append(S[i]+str(j-i))
-    i= j
-print (''.join(ans))
-#print (len(ans))
+maxans = 0
+ans = 0
+while i<len(Hlist):
+    j = i+1
+    if j<len(Hlist) and Hlist[i]>=Hlist[j]:
+        #print (Hlist[i])
+        #j=j+1
+        ans=ans+1
+    else:
+        ans=0
+    maxans = max(ans,maxans)
+    # print (i)
+    # print (j)
+    i=j
+print (maxans)
