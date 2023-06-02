@@ -3,8 +3,10 @@ import io
 import sys
 
 _INPUT = """\
-5
-10 4 8 7 3
+14
+1 2 2 3 3 3 4 4 4 4 1 2 3 4
+
+
 
 
 
@@ -12,20 +14,17 @@ _INPUT = """\
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
 N = int(input())
-Hlist = list(map(int,input().split()))
-i = 0
-maxans = 0
-ans = 0
-while i<len(Hlist):
-    j = i+1
-    if j<len(Hlist) and Hlist[i]>=Hlist[j]:
-        #print (Hlist[i])
-        #j=j+1
-        ans=ans+1
-    else:
-        ans=0
-    maxans = max(ans,maxans)
-    # print (i)
-    # print (j)
+S =list(map(int,input().split()))
+i=0
+Ans = 0
+while i<len(S):
+    j=i+1
+    ans = 1
+    #同じ色に並んでいる区間の長さを求める
+    while j<len(S) and S[i]==S[j]:
+        ans+=1
+        j+=1
+    Ans+=ans//2
     i=j
-print (maxans)
+    
+print (Ans)
