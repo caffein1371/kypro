@@ -3,30 +3,69 @@ import io
 import sys
 
 _INPUT = """\
-100000 1
-1 99999
-
+4 5
+2 -1
+3 1
+8 8
+0 5
 
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N,M = map(int,input().split())
-G = [[] for i in range(N)]
-for i in range(M):
-    a,b = map(int,input().split())
-    a-=1
-    b-=1
-    G[a].append(b)
-    G[b].append(a)
+# UnionFind
+class UnionFind:
+    def __init__(self,n):
+        self.n=n
+        self.parent_size=[-1]*n
 
-#print (G)
-for i in G[0]:
-    #print (i)
-    for j in G[i]:
-        if j==N-1:
-            print ('POSSIBLE')
-            exit()
+    def leader(self,a):
+        if self.parent_size[a]<0:
+            return a
+        self.parent_size[a]=self.leader(self.parent_size[a])
+        return self.parent_size[a]
+    def merge(self,a,b):
+        x,y=self.leader(a),self.leader(b)
+        if x == y: return 
+        if abs(self.parent_size[x])<abs(self.parent_size[y]):
+            x,y=y,x
+        self.parent_size[x] += self.parent_size[y]
+        self.parent_size[y]=x
+        return
+    def same(self,a,b):
+        return self.leader(a) == self.leader(b)
+    def size(self,a):
+        return abs(self.parent_size[self.leader(a)])
+    def groups(self):
+        result=[[] for _ in range(self.n)]
+        for i in range(self.n):
+            result[self.leader(i)].append(i)
+        return [r for r in result if r != []]
 
-print ('IMPOSSIBLE')
+N,D = map(int,input().split())
+
+p = []
+
+for i in range(N):
+    x,y = map(int,input().split())
+    p.append([x,y])
+
+UF = UnionFind(N)
+
+for i in range(N):
+    for k in range(i+1,N):
+        ix,iy = p[i]
+        kx,ky = p[k]
+
+        d = (ix-kx)**2+(iy-ky)**2
+        if d<=D**2:
+            UF.merge(i,k)
+
+for i in range(0,N):
+    if UF.same(0,i):
+        print ('Yes')
+    else:
+        print ('No')
+
+        
