@@ -3,27 +3,24 @@ import io
 import sys
 
 _INPUT = """\
-8 3
-ACACTACG
-3 7
-2 3
-1 8
-
-
+5
+10 20 30 40 50
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N,Q = map(int,input().split())
-S = input()
+N = int(input())
+Alist = list(map(int,input().split()))
 temp = [0 for i in range(N+1)]
-for i in range(1,N):
-    temp[i+1]=temp[i]+(S[i-1:i+1]=='AC')
-    #print (S[i-1:i+1]=='AC')
+for i in range(N):
+    temp[i+1]=Alist[i]+temp[i]
+#print (temp)
 
+for i in range(1,N+1):
+    ans = 0
+    for j in range(N-i+1):
+        diff = temp[j+i]-temp[j]
+        ans = max(diff,ans)
+    print (ans)
 
-for i in range(Q):
-    l,r = map(int,input().split())
-    l-=1
-    print (temp[r]-temp[l+1])
