@@ -3,31 +3,27 @@ import io
 import sys
 
 _INPUT = """\
-314159265 358979323 84
+8 3
+ACACTACG
+3 7
+2 3
+1 8
+
 
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-A,B,K = map(int,input().split())
+N,Q = map(int,input().split())
+S = input()
+temp = [0 for i in range(N+1)]
+for i in range(1,N):
+    temp[i+1]=temp[i]+(S[i-1:i+1]=='AC')
+    #print (S[i-1:i+1]=='AC')
 
-for i in range(K):
-    if i%2==0:
-        if A%2!=0:
-            A-=1
-        #print (A,B)
-        A=A//2
-        temp=A
-        B+=temp
-        #print (A,B)
-            
-    elif i%2==1:
-        if B%2!=0:
-            B-=1
-        B=B//2
-        temp=B
-        A+=temp
 
-print (A,B)
-    
+for i in range(Q):
+    l,r = map(int,input().split())
+    l-=1
+    print (temp[r]-temp[l+1])
