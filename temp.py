@@ -3,21 +3,23 @@ import io
 import sys
 
 _INPUT = """\
-6 3
-2 0 2 -1 0 -4
+1 2 3 1
+
+
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N,K = map(int,input().split())
-Alist = list(map(int,input().split()))
-temp = [0 for i in range(N+1)]
-for i in range(N):
-    temp[i+1]=Alist[i]+temp[i]
-#print (temp)
+A,B,C,K = map(int,input().split())
 
-for i in range(N-K+1):
-    diff = temp[i+K]-temp[i]
-    print (diff)
+temp = A-B
+
+if abs(temp)>10**18:
+    print ('Unfair')
+else:
+    if K%2==0:
+        print (temp)
+    else:
+        print ((-1)*(temp))
 
