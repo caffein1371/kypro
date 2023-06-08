@@ -3,7 +3,11 @@ import io
 import sys
 
 _INPUT = """\
-1 2 3 1
+3
+3
+1
+2
+
 
 
 
@@ -11,15 +15,28 @@ _INPUT = """\
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-A,B,C,K = map(int,input().split())
+N = int(input())
+ans = []
+for i in range(N):
+    a = int(input())
+    a-=1
+    ans.append(a)
+tansaku = set()
+temp = 0
+i = 1
+while True:
+    if ans[temp]==1:
+        print (i)
+        break
+    if ans[temp] not in tansaku:
+        tansaku.add(ans[temp])
+        #tansaku = liset(tansaku))
 
-temp = A-B
-
-if abs(temp)>10**18:
-    print ('Unfair')
-else:
-    if K%2==0:
-        print (temp)
     else:
-        print ((-1)*(temp))
+        print (-1)
+        break
+    temp = ans[temp]
+    i+=1
 
+
+    
