@@ -3,29 +3,30 @@ import io
 import sys
 
 _INPUT = """\
-12
-100 104 102 105 103 103 101 105 104 102 104 101
-
+1
+o
+0
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
 N = int(input())
-A = list(map(int,input().split()))
-#累積和の問題？
-ans = float('Inf')
-temp = [0 for i in range(N+1)]
-for i in range(N):
-    temp[i+1]= temp[i]+A[i]
-temp1 = [0 for i in range(N+1)]
-#print (temp)
-B = A[::-1]
-for i in range(N):
-    temp1[i+1] = temp1[i]+B[i]
-temp1 = temp1[::-1]
-#print (temp1)
+S = input()
+T = input()
 
-for i in range(0,N):
-    ans = min(ans,abs(temp1[i+1]-temp[i+1]))
-print (ans)
+flag = True
+for i in range(N):
+    #print (S[i])
+    #print (T[i])
+    if (S[i]==T[i]) or (S[i]=='1' and T[i]=='l') or (S[i]=='0' and T[i]=='o') or (S[i]=='l' and T[i]=='1') or (S[i]=='o' and T[i]=='0'):
+        #flag = True
+        pass
+    else:
+        flag = False
+        break
+
+if flag:
+    print ('Yes')
+else:
+    print ('No')
