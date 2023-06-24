@@ -3,26 +3,43 @@ import io
 import sys
 
 _INPUT = """\
-3
-14159 26535 89793 23846 26433 83279 50288 41971 69399 37510 58209 74944 59230 78164 6286 20899 86280 34825 34211 70679 82148
-
+3 5
+#.#..
+.....
+.#...
+2 2
+#.
+.#
+5 3
+...
+#.#
+.#.
+.#.
+...
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
 N = int(input())
-A = list(map(int,input().split()))
+import itertools
+S = []
+for i in range(N):
+    s = input()
+    S.append(s)
 
-ans = []
-temp = len(A)
-temp1 = len(A)//7
+for i in itertools.permutations(S,2):
+    #print (i)
+    temp = ''.join(i)
+    #print(temp)
+    M = len(temp)
+    flag=[]
+    for j in range(M):
+        if temp[j]==temp[M-1-j] :
+            flag.append(True)
+    if sum(flag)==M:
+        print ('Yes')
+        exit()
+print ('No')
 
-for i in range(temp1):
-    ans1=0
-    for i in range(i*7,(i+1)*7):
-        ans1+=A[i]
-    if i==temp1-1:
-        print (ans1)
-    else:
-        print (ans1,end=' ')
+
