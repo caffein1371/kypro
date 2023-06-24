@@ -3,19 +3,8 @@ import io
 import sys
 
 _INPUT = """\
-4
-2 5 1 2
-
-
-
-
-
-
-
-
-
-
-
+3
+14159 26535 89793 23846 26433 83279 50288 41971 69399 37510 58209 74944 59230 78164 6286 20899 86280 34825 34211 70679 82148
 
 
 
@@ -23,20 +12,17 @@ _INPUT = """\
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
 N = int(input())
-Alist = list(map(int,input().split()))
+A = list(map(int,input().split()))
+
 ans = []
-for i in range(N-1):
-    if Alist[i]-Alist[i+1]<-1:
-        for j in range(Alist[i],Alist[i+1],1):
-            ans.append(j)
-            #print (j)
-    elif Alist[i]-Alist[i+1]>1:
-        for j in range(Alist[i],Alist[i+1],-1):
-            ans.append(j)
-            #print (j)
+temp = len(A)
+temp1 = len(A)//7
 
-    elif abs(Alist[i]-Alist[i+1])==1:
-        ans.append(Alist[i])
-
-ans.append(Alist[-1])
-print (*ans)
+for i in range(temp1):
+    ans1=0
+    for i in range(i*7,(i+1)*7):
+        ans1+=A[i]
+    if i==temp1-1:
+        print (ans1)
+    else:
+        print (ans1,end=' ')
