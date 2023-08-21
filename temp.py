@@ -16,6 +16,7 @@ S = input()
 
 from collections import deque
 
+
 A = deque()
 T = []
 for i in range(len(S)):
