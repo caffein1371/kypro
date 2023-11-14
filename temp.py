@@ -14,9 +14,8 @@ sys.stdin = io.StringIO(_INPUT)
 N = int(input())
 S = input()
 
-A = []
-T = []
 from collections import deque
+
 
 A = deque()
 T = []
