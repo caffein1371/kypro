@@ -96,4 +96,3 @@ for i in range(N):
 tree = BST(temp)
 print (mydict)
 temp2 = tree.inorder(tree.root)
-
