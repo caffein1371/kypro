@@ -3,67 +3,73 @@ import io
 import sys
 
 _INPUT = """\
-4 4
-S...
-#..#
-#...
-..#T
-4
-1 1 3
-1 3 5
-3 2 1
-2 3 1
+2 2
+S.
+T.
+1
+1 2 4
+
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-def dfs(grid, visited, energy, start_i, start_j, target_i, target_j):
-    # ゴール地点に到達した場合、エネルギーが0以上ならばTrueを返す
-    if start_i == target_i and start_j == target_j:
-        return energy >= 0
+from collections import deque
+
+def is_valid_move(grid, visited, energy, x, y):
+    H, W = len(grid), len(grid[0])
+    return 0 <= x < H and 0 <= y < W and grid[x][y] != '#' and not visited[x][y][energy]
+
+def bfs(grid, start_x, start_y, target_x, target_y, energies):
+    H, W = len(grid), len(grid[0])
+    max_energy = max(energies, key=lambda x: x[2])[2]  # 最大エネルギーを取得
+    visited = [[[False] * (max_energy + 1) for _ in range(W)] for _ in range(H)]
+    queue = deque([(start_x, start_y, 0)])  # (x, y, energy)
+    visited[start_x][start_y][0] = True
+
+    while queue:
+        x, y, energy = queue.popleft()
+
+        if x == target_x and y == target_y:
+            return True
+        
+        for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+            new_x, new_y = x + dx, y + dy
+            
+            if is_valid_move(grid, visited, energy, new_x, new_y):
+                if grid[new_x][new_y] == 'T':
+                    return True
+
+                new_energy = energy
+                if (new_x, new_y) in energies:
+                    idx = energies.index((new_x, new_y))
+                    new_energy = energies[idx][2]
+
+                visited[new_x][new_y][new_energy] = True
+                queue.append((new_x, new_y, new_energy))
     
-    # 現在地を訪問済みとしてマーク
-    visited[start_i][start_j] = True
-
-    # 上下左右の移動を試みる
-    for di, dj in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-        ni, nj = start_i + di, start_j + dj
-        # グリッドの範囲内かつ障害物でなく、未訪問の空きマスの場合
-        if 0 <= ni < len(grid) and 0 <= nj < len(grid[0]) and not visited[ni][nj] and grid[ni][nj] != '#':
-            # エネルギーが0以上の場合、再帰的に探索を行う
-            if dfs(grid, visited, energy - 1, ni, nj, target_i, target_j):
-                return True
-
     return False
 
-def can_reach_target(grid, start_i, start_j, target_i, target_j):
-    # グリッドのサイズ
-    H, W = len(grid), len(grid[0])
+if __name__ == "__main__":
+    H, W = map(int, input().split())  # Input grid size
+    grid = [list(input()) for _ in range(H)]  # Input grid
+    N = int(input())  # Number of medicines
     
-    # 訪問状態を管理する配列
-    visited = [[False] * W for _ in range(H)]
+    energies = []
+    for _ in range(N):
+        r, c, e = map(int, input().split())  # Input medicine positions and energies
+        energies.append((r - 1, c - 1, e))
     
-    # DFSを実行してゴール地点に到達可能かどうかを判定
-    return dfs(grid, visited, 0, start_i, start_j, target_i, target_j)
-
-# グリッドのサイズを受け取る
-H, W = map(int, input().split())
-
-# グリッドを受け取る
-grid = [input() for _ in range(H)]
-
-# スタート地点とゴール地点を探す
-start_i, start_j = 0, 0
-target_i, target_j = 0, 0
-for i in range(H):
-    for j in range(W):
-        if grid[i][j] == 'S':
-            start_i, start_j = i, j
-        elif grid[i][j] == 'T':
-            target_i, target_j = i, j
-
-# スタート地点からゴール地点まで到達可能かどうかを判定
-if can_reach_target(grid, start_i, start_j, target_i, target_j):
-    print("Yes")
-else:
-    print("No")
+    # Find start and target positions
+    start_x, start_y, target_x, target_y = None, None, None, None
+    for i in range(H):
+        for j in range(W):
+            if grid[i][j] == 'S':
+                start_x, start_y = i, j
+            elif grid[i][j] == 'T':
+                target_x, target_y = i, j
+    
+    # Perform BFS
+    if bfs(grid, start_x, start_y, target_x, target_y, energies):
+        print("Yes")
+    else:
+        print("No")
