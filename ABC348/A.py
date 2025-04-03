@@ -3,17 +3,21 @@ import io
 import sys
 
 _INPUT = """\
-6
-abcarc
-agcahc
-
+9
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N = int(input())
-S = input()
-T = input()
 
-print (S)
+
+N = int(input())
+
+ans = []
+for i in range(N):
+    if (i+1)%3==0:
+        ans.append('x')
+    else:
+        ans.append('o')
+
+print (''.join(ans))
