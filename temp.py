@@ -3,8 +3,11 @@ import io
 import sys
 
 _INPUT = """\
-8
-a(b(d))c
+1234567890
+
+
+
+
 
 
 
@@ -12,23 +15,15 @@ a(b(d))c
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
 N = int(input())
-S = input()
+import math
 
-from collections import deque
+temp = int(math.sqrt(N))
+print (temp)
+temp1 = int(math.log2(N))
+ans = 0
+for i in range(2,temp+2):
+    for j in range(2,temp+2):
+        if temp1/(2*int(math.log2(i)))==j:
+            ans+=1
 
-
-A = deque()
-T = []
-for i in range(len(S)):
-    if S[i]!=')' and S[i]!='(':
-        T.append(S[i])
-    elif S[i]=='(':
-        T.append(S[i])
-        A.append(i)
-    elif S[i]==')':
-        if len(A)!=0:
-            x = A.pop()
-            T = T[0:x]
-        else:
-            T.append(S[i])
-print (''.join(T))
+print (ans)
