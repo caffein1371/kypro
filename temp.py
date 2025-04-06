@@ -3,10 +3,7 @@ import io
 import sys
 
 _INPUT = """\
-1234567890
-
-
-
+20
 
 
 
@@ -17,13 +14,16 @@ sys.stdin = io.StringIO(_INPUT)
 N = int(input())
 import math
 
-temp = int(math.sqrt(N))
-print (temp)
-temp1 = int(math.log2(N))
-ans = 0
-for i in range(2,temp+2):
-    for j in range(2,temp+2):
-        if temp1/(2*int(math.log2(i)))==j:
-            ans+=1
+# a = 0
+# for i in range(1000):
+#     if 2**i>=10**18:
+#         #aは最大でも60
+#         a = i
+#         break
+# aは最大でも60
+# print (a)
 
+ans = 0
+for i in range(1,61):
+    ans+= (int(math.sqrt(N//(2**i))+1))//2
 print (ans)
