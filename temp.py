@@ -12,7 +12,7 @@ _INPUT = """\
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
 N = int(input())
-import math
+from math import isqrt
 
 # a = 0
 # for i in range(1000):
@@ -25,5 +25,7 @@ import math
 
 ans = 0
 for i in range(1,61):
-    ans+= (int(math.sqrt(N//(2**i))+1))//2
+    ans+= (isqrt(N//(2**i))+1)//2
 print (ans)
+
+
