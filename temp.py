@@ -3,22 +3,37 @@ import io
 import sys
 
 _INPUT = """\
-8
-7 3 5 4 2 1 6 8
-3 8 2 5 4 6 7 1
+4 3
+8 5 -1 3
+3 -2 -4
 
 
 
 """
 sys.stdin = io.StringIO(_INPUT)
 ##########################################
-N = int(input())
-import itertools
-Plist = tuple(list(map(int,input().split())))
-Qlist = tuple(list(map(int,input().split())))
-temp = [i for i in range(1,N+1)]
-A = list(itertools.permutations(temp))
+N,M =  map(int,input().split())
+Blist = sorted(list(map(int,input().split())),reverse=True)
+Wlist = sorted(list(map(int,input().split())),reverse=True)
+print (Blist)
+print (Wlist)
 
+ans0 = 0
+ans1 = 1
+temp = 0
+for i in range(N):
+    if Blist[i]>=0:
+        ans0+=Blist[i]
+        temp = i
+    else:
+        ans1=ans0+Blist[i]
+        break
+    
+print (ans0)
+print (ans1)
 
-#print (A)
-print (abs(A.index(Plist)-A.index(Qlist)))
+for i in range(temp):
+    if Wlist[i]>=0:
+        ans0+=Wlist[i]
+
+print (max(ans0,ans1))
